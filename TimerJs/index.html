@@ -1,0 +1,144 @@
+<style>
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+transition: background-color 1s;
+background: linear-gradient(top, hsl(0deg 0% 0%), hsl(0deg 0% 33%) 90%);
+background: -webkit-linear-gradient(top, hsl(0deg 0% 0%), hsl(0deg 0% 33%) 90%);
+}
+#container {
+    width: 100%;
+    height: 100%;
+    color: #b1b1b1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 125px;
+transition: all 5s ease-in-out;
+}
+
+#container:active {
+background: linear-gradient(bottom, hsl(0deg 0% 0%), hsl(0deg 0% 33%) 90%);
+background: -webkit-linear-gradient(bottom, hsl(0deg 0% 0%), hsl(0deg 0% 33%) 90%);
+
+
+}
+.hours {
+display: flex;
+}
+.hours::selection {
+   background: transparent;
+}
+.minutes {
+display: flex;
+}
+.minutes::selection {
+   background: transparent;
+}
+
+.seconds {
+display: flex;
+}
+.seconds::selection {
+	background: transparent;
+}
+.doubledots::selection {
+	background: transparent;
+}
+</style>
+
+<!doctype html>
+<html>
+  <head>
+    <title>Таймер</title>
+  </head>
+
+
+  <body>
+	<div id="container">
+
+			<div class="hours">00
+				<div class="doubledots">:</div>
+			</div>
+			<div class="minutes">00
+				<div class="doubledots">:</div>
+			</div>
+			<div class="seconds">00</div>
+
+	</container>
+  </body>
+</html>
+
+
+<script>
+  const hoursElem = document.querySelector('.hours');
+  const minutesElem = document.querySelector('.minutes');
+  const secondsElem = document.querySelector('.seconds');
+let isTimerStarted = false;
+  let hours = 0;
+  let minutes = 0;
+  let seconds = 0;
+let milSec = 0;
+  let interval;
+  const timerActivation = document.querySelector('#container');
+  
+  timerActivation.addEventListener('click', () => {
+if (!isTimerStarted) {
+alert("Привет! Ты попал на испытание! Твоя задача прождать двадцать четыре часа чтобы узнать очень важную тайну.");
+    isTimerStarted = true;
+  }
+else {
+alert("Заскамлен мамонт)))) Жди заново))))");
+}
+clearTimer()
+    clearInterval(interval);
+    interval = setInterval(timer, 1000);
+
+  });
+  
+  function timer() {
+milSec++;
+    seconds++;
+    if (seconds <= 9) {
+      secondsElem.innerText = "0" + seconds;
+    }
+if (seconds > 9) {
+      secondsElem.innerText = seconds;
+    }
+    if (seconds > 59) {
+      seconds = 0;
+      minutes++;
+        minutesElem.innerText = "0" + minutes + ":";
+        secondsElem.innerText = "0" + seconds;
+    }
+if (minutes <= 9) {
+minutesElem.innerText = "0" + minutes + ":";
+}
+if (minutes > 9) {
+minutesElem.innerText = minutes + ":";
+}
+if (minutes > 59) {
+minutes = 0;
+hours++
+}
+if (hours <= 9) {
+hoursElem.innerText = "0" + hours + ":";
+}
+if (hours > 9) {
+hoursElem.innerText = hours + ":";
+}
+if (hours > 24) {
+hoursElem.innerText = "пошёл на хуй)))))" + ":";
+}
+}
+function clearTimer() {
+hours = 00;
+minutes = 00;
+seconds = 00;
+hoursElem.textContent = "00:";
+minutesElem.textContent = "00:";
+secondsElem.textContent = "00";
+}
+</script>
